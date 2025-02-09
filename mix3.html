@@ -64,6 +64,7 @@
         }
         function generateQuestions() {
             questions = [];
+            questions = [];
             for (let i = 0; i < 10; i++) {
                 let num1 = Math.floor(Math.random() * 10) + 1;
                 let num2 = Math.floor(Math.random() * 10) + 1;
@@ -71,8 +72,10 @@
                 let operators = ["+", "-", "*", "/"];
                 let op1 = operators[Math.floor(Math.random() * operators.length)];
                 let op2 = operators[Math.floor(Math.random() * operators.length)];
-                let expression = `${num1} ${op1} ${num2} ${op2} ${num3}`;
-                let answer = eval(expression);
+                let expression = `${num1} ${op1} ${num2} ${op2} ${num3}`
+                    .replace(/\*/g, '×')
+                    .replace(/\//g, '÷');
+                let answer = eval(expression.replace(/×/g, '*').replace(/÷/g, '/'));
                 questions.push({ expression, answer });
             }
             currentQuestion = 0;
