@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เลือกประเภทโจทย์</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200;700&display=swap');
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      text-align: center;
+      background-color: #b3ddf5;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+      position: center;
+    }
+
+    h2 {
+      font-weight: 700;
+    }
+
+    .btn {
+    display: block;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 20px;
+    border: 1px solid #000000;
+    cursor: pointer;
+    margin: 10px ;
+    width: 300px;
+}
+      
+    .btn-add { background-color: #06db74 }
+    .btn-sub { background-color: #f884cb }
+    .btn-mul { background-color: #ffde59 }
+    .btn-div { background-color: #ff914d }
+    .btn-mix { background-color: #86baff }
+    
+    .btn-level {
+      background-color: #d1baff;
+      color: black;
+      border-radius: 80px;
+      border: 1px solid #000000;
+      display: block;
+      margin: 10px auto;
+      width: 150px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Select Math Type -->
+    <h2>เลือกประเภทโจทย์</h2>
+    <button class="btn btn-add" onclick="goToLevels('addition')">บวก</button>
+    <button class="btn btn-sub" onclick="goToLevels('subtraction')">ลบ</button>
+    <button class="btn btn-mul" onclick="goToLevels('multiple')">คูณ</button>
+    <button class="btn btn-div" onclick="goToLevels('division')">หาร</button>
+    <button class="btn btn-mix" onclick="goToLevels('mix')">ระคน</button>
+
+    <!-- Select Level-->
+    <div id="levelSelection" style="display: none;">
+      <h2>เลือกเลเวลโจทย์</h2>
+      <button class="btn btn-level" onclick="startGame('1')">เลเวล 1</button>
+      <button class="btn btn-level" onclick="startGame('2')">เลเวล 2</button>
+      <button class="btn btn-level" onclick="startGame('3')">เลเวล 3</button>
+    </div>
+  </div>
+
+  <script>
+    let currentType = '';
+
+    function goToLevels(type) {
+      currentType = type;
+      document.getElementById("levelSelection").style.display = "block";
+    }
+
+    function startGame(level) {
+      alert("เริ่มโจทย์ระดับ " + level + " ประเภท " + currentType);
+      
+      window.location.href = `${currentType}${level}.html`;
+    }
+  </script>
+
+</body>
+</html>
