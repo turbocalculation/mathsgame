@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบฝึกหัดประเภทระคน level 1</title>
+    <title>แบบฝึกหัดโจทย์ระคน</title>
     <style>
         body {
             font-family: 'Sarabun', sans-serif;
             text-align: center;
-            background: #86baff; 
+            background: #86baff;
         }
-        
         .container {
             background: white;
             padding: 20px;
@@ -30,28 +29,18 @@
         .btn-submit { background-color: #28a745; color: white; }
         .btn-next { background-color: #007bff; color: white; }
         .btn-home { background-color: #a8a8a8; color: white; }
-
         input[type="number"] {
-            -moz-appearance: textfield;
             font-size: 16px;
             padding: 10px;
             width: 100px;
             text-align: center;
         }
-        
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>แบบฝึกหัดประเภทระคน level 1</h2>
+        <h2>แบบฝึกหัดโจทย์ระคน</h2>
         <p id="timer">⏳ เวลา: 0 วินาที</p>
-        <b1> </b1>
         <p id="question">Loading...</p>
         <input type="number" id="answer" />
         <br>
@@ -61,21 +50,18 @@
         <p id="feedback"></p>
         <p id="score">คะแนน: 0 / 10</p>
     </div>
-
     <script>
         let questions = [];
         let currentQuestion = 0;
         let score = 0;
         let time = 0;
         let timerInterval;
-
         function startTimer() {
             timerInterval = setInterval(() => {
                 time++;
                 document.getElementById("timer").innerText = `⏳ เวลา: ${time} วินาที`;
             }, 1000);
         }
-
         function generateQuestions() {
             questions = [];
             for (let i = 0; i < 10; i++) {
@@ -96,29 +82,26 @@
             showQuestion();
             startTimer();
         }
-
         function showQuestion() {
             if (questions.length === 0) return;
             document.getElementById("feedback").innerText = "";
             document.getElementById("answer").value = "";
-            document.getElementById("question").innerText = `ข้อที่ ${currentQuestion + 1}: ${questions[currentQuestion].expression} = ?``;
+            document.getElementById("question").innerText = `ข้อที่ ${currentQuestion + 1}: ${questions[currentQuestion].expression} = ?`;
             document.getElementById("answer").focus();
         }
-
         function checkAnswer() {
-            let userAnswer = parseInt(document.getElementById("answer").value);
+            let userAnswer = parseFloat(document.getElementById("answer").value);
             let correctAnswer = questions[currentQuestion].answer;
-            if (!isNaN(userAnswer) && userAnswer === correctAnswer) {
+            if (!isNaN(userAnswer) && userAnswer.toFixed(2) == correctAnswer.toFixed(2)) {
                 score++;
                 document.getElementById("feedback").innerText = "✅ ถูกต้อง!";
             } else {
-                document.getElementById("feedback").innerText = `❌ ผิด! คำตอบที่ถูกคือ ${correctAnswer}`;
+                document.getElementById("feedback").innerText = `❌ ผิด! คำตอบที่ถูกคือ ${correctAnswer.toFixed(2)}`;
             }
             document.getElementById("score").innerText = `คะแนน: ${score} / 10`;
             document.querySelector(".btn-submit").style.display = "none";
             document.querySelector(".btn-next").style.display = "inline-block";
         }
-
         function nextQuestion() {
             currentQuestion++;
             if (currentQuestion < questions.length) {
@@ -132,11 +115,9 @@
                 document.querySelector(".btn-next").style.display = "none";
             }
         }
-
         function goHome() {
             window.location.href = "math.html";
         }
-
         window.onload = generateQuestions;
     </script>
 </body>
